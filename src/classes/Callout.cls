@@ -5,6 +5,10 @@ public class Callout {
     private Map<String, String> parameters;
     private HttpRequest request;
 
+    public Callout(String namedCredential, String endpointPath) {
+        this('callout:' + namedCredential + endpointPath);
+    }
+
     public Callout(String endpoint) {
         this.endpoint = endpoint;
 
