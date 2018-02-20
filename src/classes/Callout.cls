@@ -1,4 +1,5 @@
 public class Callout {
+
     private String endpoint;
     private Map<String, String> headers;
     private Map<String, String> parameters;
