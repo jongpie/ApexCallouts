@@ -93,7 +93,7 @@ public class Callout {
         // Set the parameters & endpoint
         String parameterString = '';
         for(String parameterKey : this.parameters.keySet()) {
-            String prefix = String.isEmpty(parameterString) ? '?' : '&';
+            String prefix = String.isEmpty(parameterString) && !this.endpoint.contains('?') ? '?' : '&';
             parameterString += prefix + parameterKey + '=' + this.parameters.get(parameterKey);
         }
         this.request.setEndpoint(this.endpoint + parameterString);
