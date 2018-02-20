@@ -33,6 +33,7 @@ public class Callout {
     }
 
     public HttpResponse del() {
+        // 'DELETE' is a reserved word in Apex, so method name has been abbreviated
         return this.executeCallout('DELETE', null);
     }
 
