@@ -61,8 +61,8 @@ public class Callout {
     }
 
     private HttpResponse executeCallout(String httpVerb, String requestBody) {
+        // Set the method & request body
         this.request.setMethod(httpVerb);
-
         if(requestBody != null) this.request.setBody(requestBody);
 
         // Set the headers
@@ -70,14 +70,12 @@ public class Callout {
             this.request.setHeader(headerKey, this.headers.get(headerKey));
         }
 
-        // Set the parameters
+        // Set the parameters & endpoint
         String parameterString = '';
         for(String parameterKey : this.parameters.keySet()) {
             String prefix = String.isEmpty(parameterString) ? '?' : '&';
             parameterString += prefix + parameterKey + '=' + this.parameters.get(parameterKey);
         }
-
-         // Set the endpoint
         this.request.setEndpoint(this.endpoint + parameterString);
 
         // Return the response
