@@ -30,6 +30,15 @@ public class Callout {
         return this;
     }
 
+    public Callout setCompressed() {
+        return this.setCompressed(true);
+    }
+
+    public Callout setCompressed(Boolean compress) {
+        this.request.setCompressed(compress);
+        return this;
+    }
+
     public Callout setTimeout(Integer timeoutMs) {
         this.request.setTimeout(timeoutMs);
         return this;
