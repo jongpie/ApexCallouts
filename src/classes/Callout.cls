@@ -1,5 +1,6 @@
 public class Callout {
 
+    private Boolean disableResponseValidation;
     private String endpoint;
     private Map<String, String> headers;
     private Map<String, String> parameters;
@@ -12,9 +13,10 @@ public class Callout {
     public Callout(String endpoint) {
         this.endpoint = endpoint;
 
-        this.headers    = new Map<String, String>();
-        this.parameters = new Map<String, String>();
-        this.request    = new HttpRequest();
+        this.disableResponseValidation = false;
+        this.headers                   = new Map<String, String>();
+        this.parameters                = new Map<String, String>();
+        this.request                   = new HttpRequest();
 
         // Set JSON as the default content-type - it can be overridden
         this.addHeader('Content-Type', 'application/json');
@@ -41,6 +43,11 @@ public class Callout {
 
     public Callout setTimeout(Integer timeoutMs) {
         this.request.setTimeout(timeoutMs);
+        return this;
+    }
+
+    public Callout disableResponseValidation(Boolean disableResponseValidation) {
+        this.disableResponseValidation = disableResponseValidation;
         return this;
     }
 
@@ -94,7 +101,20 @@ public class Callout {
         // Return the response
         Http http = new Http();
         HttpResponse response = http.send(this.request);
+        this.validateResponse(response);
         return response;
     }
+
+    private void validateResponse(Httpresponse response) {
+        // If validation is disabled, don't do anything
+        if(this.disableResponseValidation) return;
+
+        Integer statusCode = response.getStatusCode();
+        if(statusCode >= 400 && statusCode <= 599) {
+            throw new HttpResponseException('Received request status code ' + statusCode + ', status message: ' + response.getStatus());
+        }
+    }
+
+    private class HttpResponseException extends Exception {}
 
 }
