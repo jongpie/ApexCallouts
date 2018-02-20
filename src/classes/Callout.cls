@@ -73,9 +73,15 @@ public class Callout {
     }
 
     private HttpResponse executeCallout(String httpVerb, Object requestBody) {
-        // Set the method & request body
+        // Set the method
         this.request.setMethod(httpVerb);
-        if(requestBody != null) this.request.setBody(JSON.serialize(requestBody));
+
+        // Set the request body based on the data provided
+        if(requestBody != null) {
+            if(requestBody instanceOf Blob) this.request.setBodyAsBlob((Blob)requestBody);
+            else if(requestBody instanceOf Dom.Document) this.request.setBodyDocument((Dom.Document)requestBody);
+            else this.request.setBody(JSON.serialize(requestBody));
+        }
 
         // Set the headers
         for(String headerKey : this.headers.keySet()) {
