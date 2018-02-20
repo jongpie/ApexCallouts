@@ -13,12 +13,12 @@ public class Callout {
     public Callout(String endpoint) {
         this.endpoint = endpoint;
 
-        this.disableResponseValidation = false;
-        this.headers                   = new Map<String, String>();
-        this.parameters                = new Map<String, String>();
-        this.request                   = new HttpRequest();
+        this.headers    = new Map<String, String>();
+        this.parameters = new Map<String, String>();
+        this.request    = new HttpRequest();
 
-        // Set JSON as the default content-type - it can be overridden
+        // Set some default values - these can be overridden
+        this.disableResponseValidation = false;
         this.addHeader('Content-Type', 'application/json');
     }
 
