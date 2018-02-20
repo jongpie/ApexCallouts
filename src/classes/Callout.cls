@@ -106,7 +106,11 @@ public class Callout {
     private void validateResponse(Httpresponse response) {
         Integer statusCode = response.getStatusCode();
         if(statusCode >= 400 && statusCode <= 599) {
-            String errorMessage = 'Callout failed for ' + this.endpoint + '. Received request status code '
+            // Get the endpoint without any parameters so that no sensitive parameters are exposed to users
+            Integer endpointParametersStart = this.endpoint.indexOf('?');
+            String endpointWithoutParameters = endpointParametersStart > 0 ? this.endpoint.left(endpointParametersStart) : this.endpoint;
+
+            String errorMessage = 'Callout failed for ' + endpointWithoutParameters + '. Received request status code '
                 + statusCode + ', status message: ' + response.getStatus();
             throw new HttpResponseException(errorMessage);
         }
