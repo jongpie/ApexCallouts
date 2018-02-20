@@ -100,7 +100,9 @@ public class Callout {
     private void validateResponse(Httpresponse response) {
         Integer statusCode = response.getStatusCode();
         if(statusCode >= 400 && statusCode <= 599) {
-            throw new HttpResponseException('Received request status code ' + statusCode + ', status message: ' + response.getStatus());
+            String errorMessage = 'Callout failed for ' + this.endpoint + '. Received request status code '
+                + statusCode + ', status message: ' + response.getStatus();
+            throw new HttpResponseException(errorMessage);
         }
     }
 
