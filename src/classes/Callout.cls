@@ -25,8 +25,18 @@ public class Callout {
         return this;
     }
 
+    public Callout addHeaders(Map<String, String> headers) {
+        this.headers.putAll(headers);
+        return this;
+    }
+
     public Callout addParameter(String key, String value) {
         this.parameters.put(key, value);
+        return this;
+    }
+
+    public Callout addParameters(Map<String, String> parameters) {
+        this.parameters.putAll(parameters);
         return this;
     }
 
