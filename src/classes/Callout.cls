@@ -15,6 +15,9 @@ public class Callout {
         this.headers    = new Map<String, String>();
         this.parameters = new Map<String, String>();
         this.request    = new HttpRequest();
+
+        // Set JSON as the default content-type - it can be overridden
+        this.addHeader('Content-Type', 'application/json');
     }
 
     public Callout addHeader(String key, String value) {
