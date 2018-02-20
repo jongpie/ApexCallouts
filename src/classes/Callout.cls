@@ -1,6 +1,4 @@
 public class Callout {
-
-    private Boolean disableResponseValidation;
     private String endpoint;
     private Map<String, String> headers;
     private Map<String, String> parameters;
@@ -18,7 +16,6 @@ public class Callout {
         this.request    = new HttpRequest();
 
         // Set some default values - these can be overridden
-        this.disableResponseValidation = false;
         this.addHeader('Content-Type', 'application/json');
     }
 
@@ -43,11 +40,6 @@ public class Callout {
 
     public Callout setTimeout(Integer timeoutMs) {
         this.request.setTimeout(timeoutMs);
-        return this;
-    }
-
-    public Callout disableResponseValidation(Boolean disableResponseValidation) {
-        this.disableResponseValidation = disableResponseValidation;
         return this;
     }
 
@@ -106,9 +98,6 @@ public class Callout {
     }
 
     private void validateResponse(Httpresponse response) {
-        // If validation is disabled, don't do anything
-        if(this.disableResponseValidation) return;
-
         Integer statusCode = response.getStatusCode();
         if(statusCode >= 400 && statusCode <= 599) {
             throw new HttpResponseException('Received request status code ' + statusCode + ', status message: ' + response.getStatus());
