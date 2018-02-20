@@ -64,15 +64,15 @@ public class Callout {
         return this.executeCallout('HEAD', null);
     }
 
-    public HttpResponse patch(String requestBody) {
+    public HttpResponse patch(Object requestBody) {
         return this.executeCallout('PATCH', requestBody);
     }
 
-    public HttpResponse post(String requestBody) {
+    public HttpResponse post(Object requestBody) {
         return this.executeCallout('POST', requestBody);
     }
 
-    public HttpResponse put(String requestBody) {
+    public HttpResponse put(Object requestBody) {
         return this.executeCallout('PUT', requestBody);
     }
 
@@ -80,10 +80,10 @@ public class Callout {
         return this.executeCallout('TRACE', null);
     }
 
-    private HttpResponse executeCallout(String httpVerb, String requestBody) {
+    private HttpResponse executeCallout(String httpVerb, Object requestBody) {
         // Set the method & request body
         this.request.setMethod(httpVerb);
-        if(requestBody != null) this.request.setBody(requestBody);
+        if(requestBody != null) this.request.setBody(JSON.serialize(requestBody));
 
         // Set the headers
         for(String headerKey : this.headers.keySet()) {
