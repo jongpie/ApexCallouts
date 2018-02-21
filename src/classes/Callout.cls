@@ -102,21 +102,20 @@ public class Callout {
         // Set the parameters & endpoint
         String parameterString = '';
         for(String parameterKey : this.parameters.keySet()) {
-            String prefix = String.isEmpty(parameterString) && !this.endpoint.contains('?') ? '?' : '&';
-            parameterString += prefix + parameterKey + '=' + this.parameters.get(parameterKey);
+            String paremeterDelimiter = String.isEmpty(parameterString) && !this.endpoint.contains('?') ? '?' : '&';
+            parameterString += paremeterDelimiter + parameterKey + '=' + this.parameters.get(parameterKey);
         }
         this.request.setEndpoint(this.endpoint + parameterString);
 
         // Return the response
-        Http http = new Http();
-        HttpResponse response = http.send(this.request);
+        HttpResponse response = new Http().send(this.request);
         this.validateResponse(response);
         return response;
     }
 
     private void validateResponse(Httpresponse response) {
         Integer statusCode = response.getStatusCode();
-        if(statusCode >= 400 && statusCode <= 599) {
+        if(statusCode >= 400) {
             // Get the endpoint without any parameters so that no sensitive parameters are exposed to users
             Integer endpointParametersStart = this.endpoint.indexOf('?');
             String endpointWithoutParameters = endpointParametersStart > 0 ? this.endpoint.left(endpointParametersStart) : this.endpoint;
