@@ -16,7 +16,7 @@ public class Callout {
         this.parameters = new Map<String, String>();
         this.request    = new HttpRequest();
 
-        // Set some default values - these can be overridden
+        // Set default values - these can be overridden
         this.addHeader('Content-Type', 'application/json');
     }
 
@@ -84,33 +84,37 @@ public class Callout {
     }
 
     private HttpResponse executeCallout(String httpVerb, Object requestBody) {
-        // Set the method
         this.request.setMethod(httpVerb);
+        this.setHeaders();
+        this.setEndpointAndParameters();
+        this.setRequestBody(requestBody);
 
-        // Set the request body based on the data provided
-        if(requestBody != null) {
-            if(requestBody instanceOf Blob) this.request.setBodyAsBlob((Blob)requestBody);
-            else if(requestBody instanceOf Dom.Document) this.request.setBodyDocument((Dom.Document)requestBody);
-            else this.request.setBody(JSON.serialize(requestBody));
-        }
+        HttpResponse response = new Http().send(this.request);
+        this.validateResponse(response);
+        return response;
+    }
 
-        // Set the headers
+    private void setHeaders() {
         for(String headerKey : this.headers.keySet()) {
             this.request.setHeader(headerKey, this.headers.get(headerKey));
         }
+    }
 
-        // Set the parameters & endpoint
+    private void setEndpointAndParameters() {
         String parameterString = '';
         for(String parameterKey : this.parameters.keySet()) {
             String paremeterDelimiter = String.isEmpty(parameterString) && !this.endpoint.contains('?') ? '?' : '&';
             parameterString += paremeterDelimiter + parameterKey + '=' + this.parameters.get(parameterKey);
         }
         this.request.setEndpoint(this.endpoint + parameterString);
+    }
 
-        // Return the response
-        HttpResponse response = new Http().send(this.request);
-        this.validateResponse(response);
-        return response;
+    private void setRequestBody(Object requestBody) {
+        if(requestBody == null) return;
+
+        if(requestBody instanceOf Blob) this.request.setBodyAsBlob((Blob)requestBody);
+        else if(requestBody instanceOf Dom.Document) this.request.setBodyDocument((Dom.Document)requestBody);
+        else this.request.setBody(JSON.serialize(requestBody));
     }
 
     private void validateResponse(Httpresponse response) {
