@@ -15,9 +15,6 @@ public class Callout {
         this.headers    = new Map<String, String>();
         this.parameters = new Map<String, String>();
         this.request    = new HttpRequest();
-
-        // Set default values - these can be overridden
-        this.addHeader('Content-Type', 'application/json');
     }
 
     public Callout addHeader(String key, String value) {
@@ -112,9 +109,21 @@ public class Callout {
     private void setRequestBody(Object requestBody) {
         if(requestBody == null) return;
 
-        if(requestBody instanceOf Blob) this.request.setBodyAsBlob((Blob)requestBody);
-        else if(requestBody instanceOf Dom.Document) this.request.setBodyDocument((Dom.Document)requestBody);
-        else this.request.setBody(JSON.serialize(requestBody));
+        // Determine if the content type has already been set
+        // If it's null, then it will be automatically set based on the request body
+        Boolean contentTypeNotSet = this.headers.get('Content-Type') == null;
+
+        if(requestBody instanceOf Blob) {
+            this.request.setBodyAsBlob((Blob)requestBody);
+            if(contentTypeNotSet) this.addHeader('Content-Type', 'multipart/form-data; charset=utf-8');
+        }
+        else if(requestBody instanceOf Dom.Document) {
+            this.request.setBodyDocument((Dom.Document)requestBody);
+            if(contentTypeNotSet) this.addHeader('Content-Type', 'text/xml; charset=utf-8');
+        } else {
+            this.request.setBody(JSON.serialize(requestBody));
+            if(contentTypeNotSet) this.addHeader('Content-Type', 'application/json; charset=utf-8');
+        }
     }
 
     private void validateResponse(Httpresponse response) {
