@@ -40,9 +40,18 @@ For all 3 scenarios, the header 'Content-Type' is automatically set based on the
 When the callout is made, any status code >= 400 automatically throws an instance of Callout.HttpResponseException exception
 
 ## Example Usage
-GET request with headers & parameters, using chained method calls
+GET request with headers & parameters, using chained method calls & named credentials
 ```
-HttpResponse myCalloutResponse = new Callout('https://api.example.com/fake/1')
+HttpResponse myCalloutResponse = new Callout('myExampleNamedCredential', '/fakeResource')
+    .addHeader('myHeader', 'myHeaderValue')
+    .addParameter('myFirstParameter', 'someValue')
+    .addParameter('mySecondParameter', 'anotherVomeValue')
+    .get();
+```
+
+GET request with headers & parameters, using chained method calls & a full URL (remote site settings)
+```
+HttpResponse myCalloutResponse = new Callout('https://api.example.com/fakeResource')
     .addHeader('myHeader', 'myHeaderValue')
     .addParameter('myFirstParameter', 'someValue')
     .addParameter('mySecondParameter', 'anotherVomeValue')
