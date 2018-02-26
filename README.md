@@ -1,5 +1,5 @@
 # Apex Callouts
-A lightweight Apex library for making HTTP callouts
+A lightweight Apex library for making HTTP callouts <br />
 <a href="https://githubsfdeploy.herokuapp.com" target="_blank">
   <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
