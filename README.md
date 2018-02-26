@@ -1,7 +1,7 @@
 # Apex Callouts
 A lightweight Apex library for making HTTP callouts <br />
 <a href="https://githubsfdeploy.herokuapp.com" target="_blank">
-  <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+    <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
 ## Using Callout Constructors
@@ -38,3 +38,13 @@ For all 3 scenarios, the header 'Content-Type' is automatically set based on the
 
 ## Error Handling
 When the callout is made, any status code >= 400 automatically throws an instance of Callout.HttpResponseException exception
+
+## Example Usage
+GET request with headers & parameters, using chained method calls
+```
+HttpResponse myCalloutResponse = new Callout('https://api.example.com/fake/1')
+    .addHeader('myHeader', 'myHeaderValue')
+    .addParameter('myFirstParameter', 'someValue')
+    .addParameter('mySecondParameter', 'anotherVomeValue')
+    .get();
+```
