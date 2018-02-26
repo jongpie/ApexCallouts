@@ -1,6 +1,8 @@
 # Apex Callouts
 A lightweight Apex library for making HTTP callouts
-[![Deploy to Salesforce](https://img.shields.io/badge/salesforce-deploy-blue.svg)](https://githubsfdeploy.herokuapp.com)
+<a href="https://githubsfdeploy.herokuapp.com" target="_blank">
+  <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
 
 ## Using Callouts.cls - 2 constructors
 - **Callout(String endpoint)** - used when you have a full URL for the endpoint and you are using [remote site settings](https://help.salesforce.com/articleView?id=configuring_remoteproxy.htm&type=5)
