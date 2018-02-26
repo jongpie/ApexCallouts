@@ -4,21 +4,21 @@ A lightweight Apex library for making HTTP callouts
   <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
 
-## Using Callouts.cls - 2 constructors
+## Using Callout Constructors
 - **Callout(String endpoint)** - used when you have a full URL for the endpoint and you are using [remote site settings](https://help.salesforce.com/articleView?id=configuring_remoteproxy.htm&type=5)
 - **Callout(String namedCredential, String endpointPath)** - used with [named credentials](https://help.salesforce.com/articleView?id=named_credentials_about.htm&type=5). To use this, the named credential's endpoint should be just the base URL of the API. The specific endpoint resource to call is then provided via the endpointPath parameter.
 
-# Building Your Request
+# Building Your Callout Request
 Once you have instantiated an instance of Callout, you can setup additional options for the callout, like adding headers & parameters. Each builder method returns the current instance of Callout, allowing you to chain the builder methods.
 * Callout addHeader(String key, String value)
 * Callout addHeaders(Map<String, String> headers)
 * Callout addParameter(String key, String value)
 * Callout addParameters(Map<String, String> parameters)
-* Callout setCompressed() - enable or disable compression for the request
+* Callout setCompressed()
 * Callout setCompressed(Boolean compress)
 * Callout setTimeout(Integer timeoutMs)
 
-# Making the callout
+# Making Your Callout Request
 Once you have instantiated an instance of Callout and setup the headers & parameters (if needed), you can call any of the HTTP verb methods - each method returns an instance of HttpResponse.
 * HttpResponse del()
 * HttpResponse get()
@@ -28,7 +28,7 @@ Once you have instantiated an instance of Callout and setup the headers & parame
 * HttpResponse put(Object requestBody)
 * HttpResponse trace()
 
-## PATCH, POST & PUT methods
+# PATCH, POST & PUT methods
 Patch, post & put methods accept an Object as a parameter, with 3 main types supported
 * **Blob**:  Callout automatically uses setBodyAsBlob(yourBlob)
 * **Dom.Document**:  Callout automatically uses setBodyDocument(yourDocument)
