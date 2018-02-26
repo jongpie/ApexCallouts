@@ -20,7 +20,7 @@ Once you have instantiated an instance of Callout, you can setup additional opti
 
 # Making Your Callout Request
 Once you have instantiated an instance of Callout and setup the headers & parameters (if needed), you can call any of the HTTP verb methods - each method returns an instance of HttpResponse.
-* HttpResponse del()
+* HttpResponse del() - 'delete' is a reserved word in Apex, so the method name has been abbreviated
 * HttpResponse get()
 * HttpResponse head()
 * HttpResponse patch(Object requestBody)
