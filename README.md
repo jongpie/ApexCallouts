@@ -10,12 +10,12 @@ A lightweight Apex library for making HTTP callouts <br />
 
 ## Building Your Callout Request
 Once you have instantiated an instance of Callout, you can setup additional options for the callout, like adding headers & parameters. Each builder method returns the current instance of Callout, allowing you to chain the builder methods.
-* Callout addHeader(String key, String value)
-* Callout addHeaders(Map<String, String> headers)
-* Callout addParameter(String key, String value)
-* Callout addParameters(Map<String, String> parameters)
 * Callout setCompressed()
 * Callout setCompressed(Boolean compress)
+* Callout setHeader(String key, String value)
+* Callout setHeaders(Map<String, String> headers)
+* Callout setParameter(String key, String value)
+* Callout setParameters(Map<String, String> parameters)
 * Callout setTimeout(Integer timeoutMs)
 
 ## Making Your Callout Request

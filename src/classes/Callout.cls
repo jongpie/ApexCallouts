@@ -17,32 +17,32 @@ public class Callout {
         this.request    = new HttpRequest();
     }
 
-    public Callout addHeader(String key, String value) {
-        this.headers.put(key, value);
-        return this;
-    }
-
-    public Callout addHeaders(Map<String, String> headers) {
-        this.headers.putAll(headers);
-        return this;
-    }
-
-    public Callout addParameter(String key, String value) {
-        this.parameters.put(key, value);
-        return this;
-    }
-
-    public Callout addParameters(Map<String, String> parameters) {
-        this.parameters.putAll(parameters);
-        return this;
-    }
-
     public Callout setCompressed() {
         return this.setCompressed(true);
     }
 
     public Callout setCompressed(Boolean compress) {
         this.request.setCompressed(compress);
+        return this;
+    }
+
+    public Callout setHeader(String key, String value) {
+        this.headers.put(key, value);
+        return this;
+    }
+
+    public Callout setHeaders(Map<String, String> headers) {
+        this.headers.putAll(headers);
+        return this;
+    }
+
+    public Callout setParameter(String key, String value) {
+        this.parameters.put(key, value);
+        return this;
+    }
+
+    public Callout setParameters(Map<String, String> parameters) {
+        this.parameters.putAll(parameters);
         return this;
     }
 
@@ -115,14 +115,14 @@ public class Callout {
 
         if(requestBody instanceOf Blob) {
             this.request.setBodyAsBlob((Blob)requestBody);
-            if(contentTypeNotSet) this.addHeader('Content-Type', 'multipart/form-data; charset=utf-8');
+            if(contentTypeNotSet) this.setHeader('Content-Type', 'multipart/form-data; charset=utf-8');
         }
         else if(requestBody instanceOf Dom.Document) {
             this.request.setBodyDocument((Dom.Document)requestBody);
-            if(contentTypeNotSet) this.addHeader('Content-Type', 'text/xml; charset=utf-8');
+            if(contentTypeNotSet) this.setHeader('Content-Type', 'text/xml; charset=utf-8');
         } else {
             this.request.setBody(JSON.serialize(requestBody));
-            if(contentTypeNotSet) this.addHeader('Content-Type', 'application/json; charset=utf-8');
+            if(contentTypeNotSet) this.setHeader('Content-Type', 'application/json; charset=utf-8');
         }
     }
 
