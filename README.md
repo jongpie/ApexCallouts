@@ -45,7 +45,7 @@ GET request with headers & parameters, using chained method calls & named creden
 HttpResponse myCalloutResponse = new Callout('myExampleNamedCredential', '/fakeResource')
     .addHeader('myHeader', 'myHeaderValue')
     .addParameter('myFirstParameter', 'someValue')
-    .addParameter('mySecondParameter', 'anotherVomeValue')
+    .addParameter('mySecondParameter', 'anotherValue')
     .get();
 ```
 
@@ -54,6 +54,6 @@ GET request with headers & parameters, using chained method calls & a full URL (
 HttpResponse myCalloutResponse = new Callout('https://api.example.com/fakeResource')
     .addHeader('myHeader', 'myHeaderValue')
     .addParameter('myFirstParameter', 'someValue')
-    .addParameter('mySecondParameter', 'anotherVomeValue')
+    .addParameter('mySecondParameter', 'anotherValue')
     .get();
 ```
