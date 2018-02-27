@@ -32,7 +32,7 @@ Once you have instantiated an instance of Callout and setup the headers & parame
 Patch, post & put methods accept an Object as a parameter, with 3 main types supported
 * **Blob**:  Callout automatically uses setBodyAsBlob(yourBlob)
 * **Dom.Document**:  Callout automatically uses setBodyDocument(yourDocument)
-* **Serializable Object**: Any other object types will be serialized and sent as JSON
+* **Serializable Object**: Any other object types will be serialized and sent as JSON, using setBody(JSON.serialize(yourObject))
 
 For all 3 scenarios, the header 'Content-Type' is automatically set based on the request body if the header has not already been set
 

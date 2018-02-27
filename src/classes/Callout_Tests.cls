@@ -72,7 +72,7 @@ private class Callout_Tests {
         String parameterKey = 'myKey';
         String parameterValue = 'myValue';
 
-        Callout callout = new Callout('myNamedCredential', '/test').setparameter(parameterKey, parameterValue);
+        Callout callout = new Callout('myNamedCredential', '/test').setParameter(parameterKey, parameterValue);
         callout.get();
 
         String parameter = parameterKey + '=' + parameterValue;
@@ -86,7 +86,7 @@ private class Callout_Tests {
         String parameterKey = 'myKey';
         String parameterValue = 'myValue';
 
-        Callout callout = new Callout('https://example.com').setparameter(parameterKey, parameterValue);
+        Callout callout = new Callout('https://example.com').setParameter(parameterKey, parameterValue);
         callout.get();
 
         String parameter = parameterKey + '=' + parameterValue;
