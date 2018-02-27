@@ -3,7 +3,7 @@ public class Callout {
     private String endpoint;
     private Map<String, String> headers;
     private Map<String, String> parameters;
-    private HttpRequest request;
+    @testVisible private HttpRequest request;
 
     public Callout(String namedCredential, String endpointPath) {
         this('callout:' + namedCredential + endpointPath);
@@ -27,7 +27,7 @@ public class Callout {
     }
 
     public Callout setHeader(String key, String value) {
-        this.headers.put(key, value);
+        this.setHeaders(new Map<String, String>{key => value});
         return this;
     }
 
@@ -37,7 +37,7 @@ public class Callout {
     }
 
     public Callout setParameter(String key, String value) {
-        this.parameters.put(key, value);
+        this.setParameters(new Map<String, String>{key => value});
         return this;
     }
 
@@ -139,6 +139,6 @@ public class Callout {
         }
     }
 
-    private class HttpResponseException extends Exception {}
+    public class HttpResponseException extends Exception {}
 
 }
