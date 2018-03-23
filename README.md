@@ -10,6 +10,7 @@ A lightweight Apex library for making HTTP callouts <br />
 
 ## Building Your Callout Request
 Once you have instantiated an instance of Callout, you can setup additional options for the callout, like adding headers & parameters. Each builder method returns the current instance of Callout, allowing you to chain the builder methods.
+* Callout setClientCertificateName(String clientCertificateName)
 * Callout setCompressed()
 * Callout setCompressed(Boolean compress)
 * Callout setHeader(String key, String value)
