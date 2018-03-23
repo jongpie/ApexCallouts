@@ -17,6 +17,11 @@ public class Callout {
         this.request    = new HttpRequest();
     }
 
+    public Callout setClientCertificateName(String clientCertificateName) {
+        this.request.setClientCertificateName(clientCertificateName);
+        return this;
+    }
+
     public Callout setCompressed() {
         return this.setCompressed(true);
     }
@@ -116,8 +121,7 @@ public class Callout {
         if(requestBody instanceOf Blob) {
             this.request.setBodyAsBlob((Blob)requestBody);
             if(contentTypeNotSet) this.setHeader('Content-Type', 'multipart/form-data; charset=utf-8');
-        }
-        else if(requestBody instanceOf Dom.Document) {
+        } else if(requestBody instanceOf Dom.Document) {
             this.request.setBodyDocument((Dom.Document)requestBody);
             if(contentTypeNotSet) this.setHeader('Content-Type', 'text/xml; charset=utf-8');
         } else {
