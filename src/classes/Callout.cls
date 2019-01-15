@@ -69,12 +69,24 @@ public class Callout {
         return this.executeCallout('HEAD', null);
     }
 
+    public HttpResponse patch() {
+        return this.patch(null);
+    }
+
     public HttpResponse patch(Object requestBody) {
         return this.executeCallout('PATCH', requestBody);
     }
 
+    public HttpResponse post() {
+        return this.post(null);
+    }
+
     public HttpResponse post(Object requestBody) {
         return this.executeCallout('POST', requestBody);
+    }
+
+    public HttpResponse put() {
+        return this.put(null);
     }
 
     public HttpResponse put(Object requestBody) {
