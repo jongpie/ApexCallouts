@@ -137,7 +137,7 @@ public class Callout {
             this.request.setBodyDocument((Dom.Document)requestBody);
             if(contentTypeNotSet) this.setHeader('Content-Type', 'text/xml; charset=utf-8');
         } else {
-            this.request.setBody(JSON.serialize(requestBody));
+            this.request.setBody(Json.serialize(requestBody));
             if(contentTypeNotSet) this.setHeader('Content-Type', 'application/json; charset=utf-8');
         }
     }

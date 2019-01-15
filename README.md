@@ -24,9 +24,9 @@ Once you have instantiated an instance of Callout and setup the headers & parame
 * HttpResponse del() - 'delete' is a reserved word in Apex, so the method name has been abbreviated
 * HttpResponse get()
 * HttpResponse head()
-* HttpResponse patch(Object requestBody)
-* HttpResponse post(Object requestBody)
-* HttpResponse put(Object requestBody)
+* HttpResponse patch() or patch(Object requestBody)
+* HttpResponse post() or post(Object requestBody)
+* HttpResponse put() or put(Object requestBody)
 * HttpResponse trace()
 
 ## PATCH, POST & PUT methods
