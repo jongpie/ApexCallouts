@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ApexCallouts</fullName>
+    <description>A lightweight Apex library for making HTTP callouts. Works with remote site settings and named credentials.</description>
     <types>
-        <members>*</members>
+        <members>Callout</members>
+        <members>Callout_Tests</members>
         <name>ApexClass</name>
     </types>
-    <version>42.0</version>
+    <version>46.0</version>
 </Package>

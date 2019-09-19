@@ -1,3 +1,7 @@
+/***********************************************************************************************
+* This file is part of the Apex Callouts project, released under the MIT License.              *
+* See LICENSE file or go to https://github.com/jongpie/ApexCallouts for full license details.  *
+***********************************************************************************************/
 @isTest
 private class Callout_Tests {
 
