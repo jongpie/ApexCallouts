@@ -5,7 +5,9 @@
     <types>
         <members>Callout</members>
         <members>Callout_Tests</members>
+        <members>RestApi</members>
+        <members>RestApi_Tests</members>
         <name>ApexClass</name>
     </types>
-    <version>46.0</version>
+    <version>49.0</version>
 </Package>
